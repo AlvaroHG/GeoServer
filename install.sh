@@ -8,7 +8,6 @@
 
 sudo apt-get update
 sudo apt-get update
-sudo apt-get install unzip
 sudo apt-get install mysql-client mysql-server libmysqlclient-dev
 sudo apt-get install python-pip libblas-dev liblapack-dev gfortran python-numpy python-scipy python-matplotlib
 sudo pip install scikit-learn sympy networkx nltk inflect pyparsing pydot2 mysql-python django==1.8.2 django-picklefield jsonfield django-storages boto django-modeldict pillow unipath beautifulsoup4 requests algopy
