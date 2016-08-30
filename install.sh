@@ -29,16 +29,14 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=~/usr/local -D Python_
 make
 make install
 cd ~
-git clone https://github.com/allenai/GeoServer.git
-git clone https://github.com/allenai/geosolver.git
-git clone https://github.com/allenai/EquationTree.git
+git clone https://github.com/seominjoon/geoserver.git
+git clone https://github.com/seominjoon/geosolver.git
 git clone https://github.com/seominjoon/stanford-parser-server.git
+mv geoserver GeoServer
 ghro GeoServer
 ln -s /opt/ai2ools/var/ghro/allenai/GeoServer GeoServer
 ghro geosolver
 ln -s /opt/ai2ools/var/ghro/allenai/geosolver geosolver
-ghro EquationTree
-ln -s /opt/ai2ools/var/ghro/allenai/EquationTree EquationTree
 wget -O stanford-parser-3.5.0.zip http://nlp.stanford.edu/software/stanford-parser-full-2014-10-31.zip
 unzip -o stanford-parser-3.5.0.zip
 mkdir -p stanford-parser-server/bin
@@ -65,7 +63,7 @@ python manage.py migrate --settings=geoserver.settings.local
 python manage.py loaddata questions.json --settings=geoserver.settings.local
 python manage.py loaddata labels.json --settings=geoserver.settings.local
 # python manage.py loaddata semantics.json --settings=geoserver.settings.local
-export PYTHONPATH=~/geosolver:~/EquationTree:~/usr/local/lib/python2.7/dist-packages; nohup python manage.py runserver 0:8000 --settings=geoserver.settings.local 2>&1 > log.txt &
+export PYTHONPATH=~/geosolver:~/usr/local/lib/python2.7/dist-packages; nohup python manage.py runserver 0:8000 --settings=geoserver.settings.local 2>&1 > log.txt &
 cd ../../geosolver
 export PYTHONPATH=PYTHONPATH:~/usr/local/lib/python2.7/dist-packages; python -m geosolver.run 1025
 EOF
