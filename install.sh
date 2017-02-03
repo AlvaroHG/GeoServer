@@ -8,6 +8,7 @@
 
 sudo apt-get update
 sudo apt-get update
+sudo apt-get install unzip
 sudo apt-get install mysql-client mysql-server libmysqlclient-dev
 sudo apt-get install python-pip libblas-dev liblapack-dev gfortran python-numpy python-scipy python-matplotlib
 sudo pip install scikit-learn sympy networkx nltk inflect pyparsing pydot2 mysql-python django==1.8.2 django-picklefield jsonfield django-storages boto django-modeldict pillow unipath beautifulsoup4 requests algopy
@@ -17,16 +18,15 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
 sudo pip install awscli
 echo "create database geodb" | mysql -u root
 
-sudo su ai2service <<'EOF'
 cd ~
-wget https://github.com/Itseez/opencv/archive/3.0.0.zip
+wget -nc https://github.com/Itseez/opencv/archive/3.0.0.zip
 unzip -o 3.0.0.zip
 cd opencv-3.0.0/
 mkdir release
 cd release
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=~/usr/local -D Python_ADDITIONAL_VERSIONS=2.7 ..
-make
-make install
+sudo make
+sudo make install
 cd ~
 git clone https://github.com/seominjoon/geoserver.git
 git clone https://github.com/seominjoon/geosolver.git
@@ -61,8 +61,7 @@ tar -xvzf media.tar.gz
 python manage.py migrate --settings=geoserver.settings.local
 python manage.py loaddata questions.json --settings=geoserver.settings.local
 python manage.py loaddata labels.json --settings=geoserver.settings.local
-# python manage.py loaddata semantics.json --settings=geoserver.settings.local
+python manage.py loaddata semantics.json --settings=geoserver.settings.local
 export PYTHONPATH=~/geosolver:~/usr/local/lib/python2.7/dist-packages; nohup python manage.py runserver 0:8000 --settings=geoserver.settings.local 2>&1 > log.txt &
 cd ../../geosolver
 export PYTHONPATH=PYTHONPATH:~/usr/local/lib/python2.7/dist-packages; python -m geosolver.run 1025
-EOF
