@@ -53,10 +53,10 @@ sed -i 's/import pyipopt//g' geosolver/solver/numeric_solver.py
 
 cd ../GeoServer/geoserver
 # https://github.com/allenai/ai2ools/blob/master/lib/bash/helpers.sh
-wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/a685bed60d23f1684a7344d665fd5b421d2e5aa6/questions.json"
-wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/a685bed60d23f1684a7344d665fd5b421d2e5aa6/labels.json"
-wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/a685bed60d23f1684a7344d665fd5b421d2e5aa6/semantics.json"
-wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/a685bed60d23f1684a7344d665fd5b421d2e5aa6/media.tar.gz"
+wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/68bd697ca57cdac1f2738a8d7e468fdccd7e5545/questions.json"
+wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/68bd697ca57cdac1f2738a8d7e468fdccd7e5545/labels.json"
+wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/68bd697ca57cdac1f2738a8d7e468fdccd7e5545/semantics.json"
+wget "https://s3-us-west-2.amazonaws.com/geosolver-server/dump/68bd697ca57cdac1f2738a8d7e468fdccd7e5545/media.tar.gz"
 tar -xvzf media.tar.gz
 python manage.py migrate --settings=geoserver.settings.local
 python manage.py loaddata questions.json --settings=geoserver.settings.local
